@@ -1,0 +1,59 @@
+
+#include <iostream>
+#include <fstream>
+#include <math.h>
+#include <stack>
+
+
+
+
+using namespace std;
+
+int main()
+{
+
+    // to extract the input from the file
+    ifstream inFile;
+	inFile.open("input.txt");
+	int a,b,c;
+	inFile >> a >>b >>c;
+        inFile.close();
+
+    // for outputting the results in a file and the program logic
+    ofstream outFile;
+    outFile.open("output.txt");
+
+    double Discriminant =b*b-4*a*c;
+
+    if(a==0 && b==0&&c==0)
+        outFile <<-1;
+else if(a==0&&b==0&&c!=0)
+outFile<<0;
+else if(a==0&&c==0)
+outFile<<1<<" "<<0;
+    else if(a==0 && b!=0)
+        outFile<<1<<" "<<-c/b;
+    else if(b==0&&c==0)
+        outFile<<1<<" "<<0;
+    else if(Discriminant <0)
+        outFile << 0;
+    else if (Discriminant == 0)
+        outFile << 1 <<" "<< (-b/(2*a));
+    else{
+        double x,y;
+        y= (-b-pow(Discriminant,0.5))/(2*a);
+        x = (-b+pow(Discriminant,0.5))/(2*a);
+        if(y<x)
+            outFile << 2 << " "<<y << " "<<x;
+        else
+            outFile << 2 << " "<<x << " "<<y;
+    }
+
+
+
+
+    outFile.close();
+
+
+    return 0;
+}
