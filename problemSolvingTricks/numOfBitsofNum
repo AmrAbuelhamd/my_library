@@ -1,0 +1,3 @@
+ int i = 0;
+    for(;n>0;n/=10,i++);
+    outFile<<i;
