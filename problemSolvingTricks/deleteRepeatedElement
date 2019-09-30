@@ -1,0 +1,51 @@
+#include <iostream>
+#include <vector>
+#include <stdio.h>
+#include <stdlib.h>
+
+using namespace std;
+int main()
+{
+
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+
+    int n;
+    cin >> n;
+    long inputArr[n];
+    long radix[1000 + 1] = {};
+    long a;
+    //vector<long> resultingArr;
+    for (int i = 0; i < n; i++)
+    {
+        cin >> a;
+        inputArr[i] = a;
+        ++radix[a];
+    }
+    for (int i = n - 1; i >= 0; i--)
+    { //                             [9]
+        //11 22 32 22 12 45 78 78 45 11
+        //11 22 32 0 12 45 78 0 0 0
+
+        int currentNum = inputArr[i];
+        if (radix[currentNum] > 1)
+        {
+            //delete and shift the elements back
+            for (int j = i; j < n; j++)
+            {
+                inputArr[j] = inputArr[j + 1];
+            }
+
+            //resultingArr.push_back(currentNum);
+            --n;
+            --radix[currentNum];
+        }
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        cout << inputArr[i] << " ";
+    }
+
+    return 0;
+}
