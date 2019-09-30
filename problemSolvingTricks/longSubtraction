@@ -1,0 +1,57 @@
+#include <iostream>
+
+#include <vector>
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string>
+#include <sstream>
+
+using namespace std;
+
+void toTen(int * element, int dif) {
+
+  if ( * element - dif < 0){
+
+    *element = 10 + * element - dif;
+
+    toTen(element + 1, 1);
+
+  } else *element -= dif;
+}
+
+int main() {
+
+  freopen("input.txt", "r", stdin);
+
+  freopen("output.txt", "w", stdout);
+
+  int bits1, bits2;
+
+  cin >> bits1 >> bits2;
+
+  vector < int > num1(bits1 + 1, 0);
+
+  vector < int > num2(bits1, 0);
+
+  for (int i = 1; i <= bits1; i++)
+    cin >> num1[bits1 - i];
+
+  for (int i = 1; i <= bits2; i++)
+    cin >> num2[bits2 - i];
+
+  for (int i = 0; i < bits2; i++){
+    toTen( & num1[i], num2[i]);
+  }
+
+  do {
+
+    bits1--;
+
+  }
+  while (num1[bits1] == 0);
+
+  for (int i = bits1; i >= 0; i--)
+    cout << num1[i];
+
+}
