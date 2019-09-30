@@ -1,0 +1,38 @@
+#include <iostream>
+#include <fstream>
+#include <math.h>
+#include <stack>
+
+
+
+using namespace std;
+
+int main()
+{
+    
+    // to extract the answer from the file
+    ifstream inFile;
+	inFile.open("input.txt");
+	int x;
+	inFile >> x ;
+        inFile.close();
+
+    // for outputting the results in a file and the program logic
+    //the stack: last in first put lifo
+    stack <int> s;
+    while (x> 0) {
+        s.push( x% 10 );
+        x = x / 10;
+    }
+    ofstream outFile;
+    outFile.open("output.txt");
+    while (!s.empty()) {
+        outFile <<s.top()<<" ";;
+        s.pop();
+    }
+    outFile.close();
+
+
+
+    return 0;
+}
