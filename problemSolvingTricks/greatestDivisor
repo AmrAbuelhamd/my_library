@@ -1,0 +1,42 @@
+#include <iostream>
+
+#include <fstream>
+
+#include <math.h>
+
+#include <stack>
+
+#include <cstdlib>
+
+
+using namespace std;
+
+int main() {
+
+    // to extract the input from the file
+    ifstream inFile;
+	inFile.open("input.txt");
+	int n;
+	inFile >> n;
+        inFile.close();
+
+    // for outputting the results in a file and the program logic
+    ofstream outFile;
+    outFile.open("output.txt");
+
+     int gd = 0;
+     for(int i=2;i<=sqrt(n);i++){
+        if(n%i==0){
+            gd = n/i;
+            outFile<<gd;
+            return 0;
+        }
+     }
+
+
+
+    outFile.close();
+
+
+    return 0;
+}
