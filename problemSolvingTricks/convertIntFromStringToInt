@@ -1,0 +1,42 @@
+#include <iostream>
+#include <vector>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string>
+#include <sstream>
+#include <math.h>
+
+using namespace std;
+
+bool isBig(char ch)
+{
+    return ch < 'a';
+}
+int indexOf(char ch)
+{
+    return ch - 'a';
+}
+char getChar(int ind)
+{
+    return (char)(ind + 'a');
+}
+
+int main()
+{
+
+    freopen("input.txt", "r", stdin);
+
+    freopen("output.txt", "w", stdout);
+
+    string str;
+    cin >> str;
+
+    int results = 0, numPos = 1;
+    for (int i = str.length() - 1; i >= 0; i--)
+    {
+        results += (str[i] - '0') * numPos;
+        numPos *= 10;
+    }
+
+    cout << results;
+}
