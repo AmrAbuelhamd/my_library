@@ -10,16 +10,11 @@ using namespace std;
 
 int main()
 {
-    // to extract the answer from the file
-    ifstream inFile;
-	inFile.open("input.txt");
-	int a;
-	inFile >> a  ;
-        inFile.close();
+	freopen("input.txt", "r", stdin);
 
-    // for outputting the results in a file and the program logic
-    ofstream outFile;
-    outFile.open("output.txt");
+        freopen("output.txt", "w", stdout);
+	int a;
+	cin >> a  ;
 
     stack<int> s;
     do{
@@ -28,12 +23,11 @@ int main()
     }while (a>0);
     while(!s.empty()){
         //cout << s.top();
-        outFile << s.top();
+        cout << s.top();
         s.pop();
     }
         //for(;;);
 
-    outFile.close();
 
 
 
