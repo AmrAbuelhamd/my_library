@@ -1,0 +1,5 @@
+//https://www.geeksforgeeks.org/swap-two-numbers-without-using-temporary-variable/
+    x = x ^ y;
+    y = x ^ y;
+    x = x ^ y;
+    out << x <<" "<< y;
