@@ -1,0 +1,80 @@
+#include <iostream>
+#include <vector>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string>
+#include <sstream>
+
+using namespace std;
+string sum = ""; 
+int bits1,bits2;
+
+template <typename T>
+  std::string NumberToString ( T Number )
+  {
+     std::ostringstream ss;
+     ss << Number;
+     return ss.str();
+  }
+
+int longAdition(int num1[],int num2[]){
+    int sumofTwoBits, carry=0;
+    for(--bits1,--bits2; bits1>=0 && bits2>=0 ; --bits1,--bits2){
+        sumofTwoBits = num1[bits1]+num2[bits2]+carry;
+
+        carry = sumofTwoBits / 10;
+        sumofTwoBits%=10;
+        
+        sum+=NumberToString(sumofTwoBits);
+    }
+    return carry;
+}
+void longAditionForOne(int bits1, int num1[],  int carry){
+    int sumofTwoBits;
+    for(; bits1>=0;bits1--){
+        sumofTwoBits = num1[bits1]+carry;
+        carry = sumofTwoBits / 10;
+        sumofTwoBits%=10;
+        
+        sum+=NumberToString(sumofTwoBits);
+    }
+    if(carry!=0)
+        sum+=NumberToString(carry);
+}
+
+int main(){
+
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+    
+    cin>>bits1>>bits2;
+    
+    int num1[bits1];
+    int num2[bits2];
+    for(int i = 0; i <bits1 ; i++){
+        cin>>num1[i];
+    }
+    for(int i = 0; i <bits2 ; i++){
+        cin>>num2[i];
+    }
+    int carry = longAdition(num1,num2);
+
+    if(bits1>bits2){
+        longAditionForOne(bits1, num1,  carry);
+    }
+    else if(bits2>bits1){
+       longAditionForOne(bits2, num2, carry);
+    }
+    else if(carry!=0){
+        sum+=NumberToString(carry);
+    }
+
+
+    
+    for(int i = sum.size()-1;i >=0; i--){
+        cout<<sum[i];
+    }
+    
+
+    return 0;
+}
