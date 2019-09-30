@@ -1,0 +1,116 @@
+#include <iostream>
+
+#include <fstream>
+
+#include <math.h>
+
+#include <stack>
+
+#include <cstdlib>
+
+#include <string.h>
+
+using namespace std;
+
+//here from deci
+// revers of the functional down there here i take int and return char
+char reVal(int num)
+{
+    if (num >= 0 && num <= 9)
+        return (char)(num + '0');
+    else
+        return (char)(num - 10 + 'A');
+}
+
+// to revers the result that i got, because i am working from up down then i should revers the answer
+void strev(char *str)
+{
+    int len = strlen(str);
+    int i;
+    for (i = 0; i < len/2; i++)
+    {
+        char temp = str[i];
+        str[i] = str[len-i-1];
+        str[len-i-1] = temp;
+    }
+}
+
+// to convert from a decimel to any givin base
+char* fromDeci(char res[], int base, int inputNum)
+{
+    int index = 0;  // Initialize index of result
+
+    // Convert input number is given base by repeatedly
+    // dividing it by base and taking remainder
+    while (inputNum > 0)
+    {
+        res[index++] = reVal(inputNum % base);
+        inputNum /= base;
+
+    }
+    res[index] = '\0'; //'\0' is the null character to terminate my string
+    // Reverse the result
+    strev(res);
+
+    return res;
+}
+//end of from deci
+
+
+//this to decimil
+//to convert the string to int, also handle cases when A is eqyal to 10
+int val(char c)
+{
+    if (c >= '0' && c <= '9')
+        return (int)c - '0';
+    else
+        return (int)c - 'A' + 10;
+}
+
+
+// first convert it to decimel i could not think in a direct way
+int toDeci(string str, int base)
+{
+    int len = str.length();
+    int power = 1; //the position of the digit
+    int num = 0;
+    int i;
+
+    // the formula goes like this 1*str[len-1] + base*str[len-2] + (base)2*str[len-2] + ...
+
+    for (i = len - 1; i >= 0; i--)
+    {
+        num += val(str[i]) * power;
+        power = power * base;
+    }
+
+    return num;
+}
+int main() {
+
+    // to extract the input from the file
+    ifstream inFile;
+	inFile.open("input.txt");
+	string n;
+	int r1, r2;
+
+	inFile >>n>>r1>>r2;
+
+
+        inFile.close();
+
+    // for outputting the results in a file and the program logic
+    ofstream outFile;
+    outFile.open("output.txt");
+
+    int inputDec = toDeci(n,r1);
+
+    char res[1000000];
+
+    outFile<<fromDeci(res, r2, inputDec);
+    outFile.close();
+
+
+
+    return 0;
+}
