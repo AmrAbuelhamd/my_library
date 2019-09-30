@@ -1,0 +1,63 @@
+#include <iostream>
+#include <fstream>
+#include <math.h>
+#include <stack>
+#include <cstdlib>
+
+
+
+
+using namespace std;
+
+int main()
+{
+
+    // to extract the input from the file
+    ifstream inFile;
+	inFile.open("input.txt");
+	int n;
+	inFile >> n;
+        inFile.close();
+
+    // for outputting the results in a file and the program logic
+    ofstream outFile;
+    outFile.open("output.txt");
+
+
+
+
+
+//             6k ± 1
+bool flag ;
+
+
+    int counter = 0;
+        if(n>=2){
+            outFile<<2<<" "<<3<<" ";
+            counter+=2;
+        }
+        for(int i = 4; true ; i++){
+                flag = true;
+
+           for(int j=2; j<=sqrt(i); j++)
+           {
+              if(i%j == 0){
+                flag = false;
+                break;
+              }
+           }
+        if(flag){
+            outFile<<i<<" ";
+            if(++counter >=n)
+                break;
+        }
+       }
+
+
+
+
+    outFile.close();
+
+
+    return 0;
+}
