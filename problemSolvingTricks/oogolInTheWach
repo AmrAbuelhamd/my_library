@@ -1,0 +1,55 @@
+#include <iostream>
+#include <fstream>
+#include <math.h>
+#include <stack>
+#include <cstdlib>
+
+
+
+
+using namespace std;
+
+int main()
+{
+
+    // to extract the input from the file
+    ifstream inFile;
+	inFile.open("input.txt");
+	int h,m;
+	inFile >> h >>m;
+        inFile.close();
+
+    // for outputting the results in a file and the program logic
+    ofstream outFile;
+    outFile.open("output.txt");
+
+    int hAngel;
+    if(h==12)
+        hAngel = 0;
+    else
+        hAngel = h*30;
+
+    int mAngel;
+    if(m==0)
+        mAngel = 0;
+    else
+        mAngel = m*6;
+
+    int angel;
+    if(hAngel>mAngel)
+        angel= hAngel-mAngel;
+    else
+    angel = mAngel - hAngel;
+
+    if(angel>180)
+        angel=360-angel;
+    outFile<<angel;
+
+
+
+
+    outFile.close();
+
+
+    return 0;
+}
