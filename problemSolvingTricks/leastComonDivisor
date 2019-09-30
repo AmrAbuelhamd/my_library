@@ -1,0 +1,50 @@
+#include <iostream>
+
+#include <fstream>
+
+#include <math.h>
+
+#include <stack>
+
+#include <cstdlib>
+
+
+using namespace std;
+long long lcm(long long a, long long b){
+    long long small,larg;
+    if(a<b){
+        small = a;
+        larg = b;
+    }
+    else {
+        larg = a;
+        small = b;
+    }
+
+    for (long long i = larg ; ; i+=larg){
+        if(i%small==0)
+            return i;
+    }
+}
+
+int main() {
+
+
+  // to extract the input from the file
+  ifstream inFile;
+  inFile.open("input.txt");
+  long long a,b;
+  inFile >> a>>b;
+  inFile.close();
+
+  // for outputting the results in a file and the program logic
+  ofstream outFile;
+  outFile.open("output.txt");
+
+
+  outFile<<lcm(a,b);
+
+  outFile.close();
+
+  return 0;
+  }
