@@ -1,0 +1,43 @@
+#include <iostream>
+
+#include <fstream>
+
+#include <math.h>
+
+#include <stack>
+
+#include <cstdlib>
+
+
+using namespace std;
+
+//https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/the-euclidean-algorithm
+int gcd(int a, int b)
+{
+    if (a == 0)
+        return b;
+    return gcd(b % a, a);
+}
+
+int main() {
+
+    // to extract the input from the file
+    ifstream inFile;
+	inFile.open("input.txt");
+	int a,b;
+	inFile >>a>>b;
+        inFile.close();
+
+    // for outputting the results in a file and the program logic
+    ofstream outFile;
+    outFile.open("output.txt");
+
+     outFile<<gcd(a,b);
+
+
+
+    outFile.close();
+
+
+    return 0;
+}
